@@ -1,8 +1,8 @@
 # Devops with Docker
 
-##Part 1
+## Part 1
 
-###1.1
+### 1.1
 ```
 docker ps -a
 CONTAINER ID        IMAGE       COMMAND                     CREATED             STATUS                      PORTS           NAMES
@@ -10,20 +10,20 @@ CONTAINER ID        IMAGE       COMMAND                     CREATED             
 d7cc527f7d5f        nginx       "/docker-entrypoint..."     21 seconds ago      Exited (0) 7 seconds ago                    infallible_robinson
 9da8b776be12        nginx       "/docker-entrypoint..."     23 seconds ago      Exited (0) 11 seconds ago                   zen_banzai
 ```
-###1.2
+### 1.2
 ```
 docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ```
-###1.3
+### 1.3
 ```
 Give me the password: basics
 You found the correct password. Secret message is:
 "This is the secret message"
 ```
-###1.4
+### 1.4
 ```
 #tail -f ./logs.txt
 Wed, 28 Oct 2020 20:11:54 GMT
@@ -33,17 +33,17 @@ Wed, 28 Oct 2020 20:12:03 GMT
 Secret message is:
 "Docker is easy"
 ```
-###1.5
+### 1.5
 ```
 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl -L http://$website;'
 ```
-###1.6
+### 1.6
 ```
 FROM devopsdockeruh/overwrite_cmd_exercise
 
 CMD ["-c"]
 ```
-###1.7
+### 1.7
 Commands:
 ```
 docker build -t curler .
@@ -65,7 +65,7 @@ Script.sh:
 #!/bin/sh
 echo "Input website:"; read website; echo "Searching.."; sleep 1; curl -L http://$website;
 ```
-###1.8
+### 1.8
 Command:
 ```
 docker run -v ${PWD}/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
@@ -88,7 +88,7 @@ Mon, 02 Nov 2020 23:08:55 GMT
 Mon, 02 Nov 2020 23:08:58 GMT
 Mon, 02 Nov 2020 23:09:01 GMT
 ```
-###1.9
+### 1.9
 Command:
 ```
 docker run -p 80:80 devopsdockeruh/ports_exercise
