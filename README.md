@@ -93,9 +93,30 @@ Command:
 ```
 docker run -p 80:80 devopsdockeruh/ports_exercise
 ```
+### 1.10
+Dockerfile:
 ```
+FROM ubuntu:16.04
+
+WORKDIR /usr/app
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install curl -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+COPY frontend-example-docker/ .
+RUN npm install
+RUN npm install -g serve
+RUN npm run build
+
+EXPOSE 5000
+
+CMD ["serve", "-s", "-l", "5000", "dist"]
 ```
+Commands:
 ```
+docker build -t frontend .
+docker run -p 5000:5000 frontend
 ```
 ```
 ```
