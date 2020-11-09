@@ -195,9 +195,22 @@ docker run -p 5000:5000 frontend
 docker build -t backend .
 docker run -p 8000:8000 backend
 ```
+### 1.13
+Dockerfile:
 ```
+FROM openjdk:8
+
+WORKDIR /usr/app/
+COPY spring-example-project-master/ .
+RUN ./mvnw package
+EXPOSE 8080
+
+CMD ["java", "-jar", "./target/docker-example-1.1.3.jar"]
 ```
+Commands:
 ```
+docker build -t javaspring
+docker run -p 8080:8080 javaspring
 ```
 ```
 ```
