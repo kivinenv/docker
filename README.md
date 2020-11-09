@@ -118,7 +118,35 @@ Commands:
 docker build -t frontend .
 docker run -p 5000:5000 frontend
 ```
+### 1.11
+Dockerfile:
 ```
+FROM ubuntu:latest
+
+WORKDIR /backend
+RUN touch logs.txt
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install curl -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+RUN node -v
+COPY backend-example-docker-master/ .
+RUN npm install 
+
+EXPOSE 8000
+
+CMD ["npm", "start"]
+```
+Commands:
+```
+docker build -t backend .
+docker run -p 8000:8000 -v ${PWD}/logs.txt:/backend/logs.txt backend
+```
+logs.txt:
+```
+11/9/2020, 7:15:21 PM: Connection received in root
+11/9/2020, 7:16:33 PM: Connection received in root
 ```
 ```
 ```
