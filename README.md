@@ -148,6 +148,57 @@ logs.txt:
 11/9/2020, 7:15:21 PM: Connection received in root
 11/9/2020, 7:16:33 PM: Connection received in root
 ```
+### 1.12
+Frontend Dockerfile:
+```
+FROM ubuntu:latest
+
+WORKDIR /usr/app
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install curl -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+COPY frontend-example-docker-master/ .
+ENV API_URL=http://localhost:8000
+RUN npm install -g serve
+RUN npm run build
+
+CMD ["serve", "-s", "-l", "5000", "dist"]
+
+EXPOSE 5000
+```
+Backend Dockerfile:
+```
+FROM ubuntu:latest
+
+WORKDIR /backend
+RUN touch logs.txt
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install curl -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+RUN node -v
+COPY backend-example-docker-master/ .
+RUN npm install 
+
+EXPOSE 8000
+
+ENV FRONT_URL=http://localhost:5000
+CMD ["npm", "start"]
+```
+Commands:
+```
+docker build -t frontend .
+docker run -p 5000:5000 frontend
+docker build -t backend .
+docker run -p 8000:8000 backend
+```
+```
+```
+```
+```
 ```
 ```
 ```
