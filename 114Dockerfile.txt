@@ -1,0 +1,17 @@
+FROM ruby:2.6.0
+
+WORKDIR /app
+
+COPY rails-example-project-master/ .
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs
+RUN gem install bundler
+RUN bundle install
+ENV SECRET_KEY_BASE secret
+
+
+RUN rails db:migrate RAILS_ENV=production
+RUN rake assets:precompile
+CMD ["rails", "s", "-e", "production"]
+
+EXPOSE 3000

@@ -212,6 +212,39 @@ Commands:
 docker build -t javaspring
 docker run -p 8080:8080 javaspring
 ```
+### 1.14
+Dockerfile:
+```
+FROM ruby:2.6.0
+
+WORKDIR /app
+
+COPY rails-example-project-master/ .
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt-get install -y nodejs
+RUN gem install bundler
+RUN bundle install
+ENV SECRET_KEY_BASE secret
+
+
+RUN rails db:migrate RAILS_ENV=production
+RUN rake assets:precompile
+CMD ["rails", "s", "-e", "production"]
+
+EXPOSE 3000
+```
+Got error:#12 1.804 ArgumentError: Missing `secret_key_base` for 'production' environment, set this string with `rails credentials:edit` so I added the SECRET_KEY_BASE
+
+Commands:
+```
+docker build -t rails .
+docker run -p 3000:3000 rails
+```
+```
+```
+```
+```
+```
 ```
 ```
 ```
