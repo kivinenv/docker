@@ -252,6 +252,8 @@ COPY hello.py .
 
 ENTRYPOINT ["python3", "./hello.py"]
 ```
+### 1.16
+Heroku link: https://devopswithdockerhello.herokuapp.com/
 ```
 ```
 ```
