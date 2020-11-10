@@ -240,7 +240,17 @@ Commands:
 docker build -t rails .
 docker run -p 3000:3000 rails
 ```
+### 1.15
+Dockerhub: https://hub.docker.com/repository/docker/kivinenv/hello
+Dockerfile:
 ```
+FROM ubuntu:16.04
+
+WORKDIR /usr/app
+RUN apt-get update && apt-get install -y python3
+COPY hello.py .
+
+ENTRYPOINT ["python3", "./hello.py"]
 ```
 ```
 ```
