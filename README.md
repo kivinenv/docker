@@ -266,7 +266,16 @@ services:
       volumes: 
       - ./logs.txt:/usr/app/logs.txt 
 ```
+### 2.2
+docker-compose file:
 ```
+version: '3.5'  
+
+services: 
+    whoami: 
+      image: devopsdockeruh/ports_exercise
+      ports: 
+        - 80:80 
 ```
 ```
 ```
