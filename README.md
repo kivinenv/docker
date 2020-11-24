@@ -254,7 +254,17 @@ ENTRYPOINT ["python3", "./hello.py"]
 ```
 ### 1.16
 Heroku link: https://devopswithdockerhello.herokuapp.com/
+
+### 2.1
+docker-compose file:
 ```
+version: '3.5' 
+
+services: 
+    first_volume_exercise:  
+      image: devopsdockeruh/first_volume_exercise
+      volumes: 
+      - ./logs.txt:/usr/app/logs.txt 
 ```
 ```
 ```
